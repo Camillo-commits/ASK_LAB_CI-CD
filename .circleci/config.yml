@@ -14,15 +14,15 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker container server
-          command: docker build . -t server:latest
+          command: docker build . -t camillocommits/askcicd/server
           working_directory: ./server
       - run:
           name: Build docker container db
-          command: docker build . -t db:latest
+          command: docker build . -t camillocommits/askcicd/db
           working_directory: ./db
       - run:
           name: Build docker container client
-          command: docker build . -t client:latest
+          command: docker build . -t camillocommits/askcicd/client
           working_directory: ./client
       
   acceptance_test_1:
