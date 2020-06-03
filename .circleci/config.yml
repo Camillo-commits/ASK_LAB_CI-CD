@@ -46,9 +46,9 @@ jobs:
       - checkout
       - setup_remote_docker          
       - run:
-        command: |
-          echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-          docker push camillocommits/askcicd:tagname
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
+            docker push camillocommits/askcicd:tagname
         
 workflows:
     build-and-test:
