@@ -9,6 +9,8 @@ jobs:
       - checkout
       - node/install-packages:
           app-dir: ./server
+      - run: cp ./server/package.json ./
+      - run: cp -r ./server/tests ./
       - run: npm install
       - run: npm test
 workflows:
