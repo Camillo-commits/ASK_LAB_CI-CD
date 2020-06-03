@@ -43,7 +43,7 @@ jobs:
     executor:
       name: node/default
     steps:
-      -chekout
+      - chekout
       - setup_remote_docker          
       - run:
         command: |
