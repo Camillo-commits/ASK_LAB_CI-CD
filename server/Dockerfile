@@ -6,7 +6,7 @@ USER node
 
 COPY --chown=node:node package.json ./
 COPY --chown=node:node package-lock.json ./
-COPY --chown=node:node test.js ./tests
+COPY --chown=node:node ./tests ./tests
 RUN npm install
 
 COPY --chown=node:node ./src ./src
