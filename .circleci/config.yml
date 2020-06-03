@@ -40,7 +40,7 @@ jobs:
           command: npm test
           working_directory: ./client
    
-  publish-latest:
+  docker-mk:
     machine: true
     executor:
       name: node/default
@@ -85,7 +85,7 @@ workflows:
                  - master
             requires:
                 - build
-        - publish-latest:
+        - docker-mk:
             requires:
               - acceptance_test_1
               - acceptance_test_2
