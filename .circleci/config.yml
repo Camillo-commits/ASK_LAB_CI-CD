@@ -45,17 +45,17 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
             sudo docker build ./db -t camillocommits/node-react-db
-            docker push camillocommits/node-rect-db
+            sudo docker push camillocommits/node-rect-db
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
             sudo docker build ./server -t camillocommits/node-svr
-            docker push camillocommits/node-svr
+            sudo docker push camillocommits/node-svr
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
             sudo docker build ./client -t cra-client
-            docker push camillocommits/cra-client
+            sudo docker push camillocommits/cra-client
             
 workflows:
     build-and-test:
