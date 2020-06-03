@@ -7,9 +7,9 @@ jobs:
     executor:
       name: node/default
      
-      build:
-        steps:
-          - checkout
+      
+    steps:
+      - checkout
       acceptance_test_1:
         steps:
           
