@@ -38,7 +38,18 @@ jobs:
       - run:
           command: npm test
           working_directory: ./client
-          
+   
+  publish-latest:
+    executor:
+      name: node/default
+    steps:
+      -chekout
+      - setup_remote_docker          
+      -run:
+        command: |
+          echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
+          docker push camillocommits/askcicd:tagname
+        
 workflows:
     build-and-test:
       jobs:
@@ -61,5 +72,8 @@ workflows:
                  - master
             requires:
                 - build
-      
+        - publish-latest:
+            requires:
+              - acceptance_test_1
+              - acceptance_test_2
          
