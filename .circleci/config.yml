@@ -38,15 +38,24 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - build
+        - build:
+          filters:
+            branches:
+              only:
+                - master
         - acceptance_test_1:
+            filters:
+              branches:
+                only:
+                 - master
             requires:
                 - build
         - acceptance_test_2:
+            filters:
+              branches:
+                only:
+                 - master
             requires:
                 - build
-      filters:
-        branches:
-          only:
-            - master
+      
          
