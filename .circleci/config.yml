@@ -9,6 +9,8 @@ jobs:
       - checkout
       
   acceptance_test_1:
+    executor:
+      name: node/default
     steps:
       - node/install-packages:
           app-dir: ./server
@@ -20,6 +22,8 @@ jobs:
           working_directory: ./server
   
   acceptance_test_2:
+    executor:
+      name: node/default
     steps:
       - run:
           command: npm install
