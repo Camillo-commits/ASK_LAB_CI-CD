@@ -19,7 +19,7 @@ jobs:
           command: npm test
           working_directory: ./server
   
-   acceptance_test_2:
+  acceptance_test_2:
     steps:
       - run:
           command: npm install
