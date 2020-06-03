@@ -54,7 +54,7 @@ jobs:
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            sudo docker build ./client -t cra-client
+            sudo docker build ./client -t camillocommits/cra-client
             sudo docker push camillocommits/cra-client
             
 workflows:
