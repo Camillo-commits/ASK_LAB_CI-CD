@@ -5,15 +5,25 @@ jobs:
   build-and-test:
   build:
     environment:
-      IMAGE_NAME: camillocommits/askcicd
+      IMAGE_NAME: camillocommits/askcicd1
+    
     executor:
       name: node/default
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build docker containers
-          command: docker-compose up -d
+          name: Build docker container server
+          command: docker build . -t server
+          working_directory: ./server
+      - run:
+          name: Build docker container db
+          command: docker build . -t db
+          working_directory: ./db
+      - run:
+          name: Build docker container client
+          command: docker build . -t client
+          working_directory: ./client
       
   acceptance_test_1:
     executor:
@@ -52,15 +62,15 @@ jobs:
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/node-react-db:latest
+            docker push camillocommits/askcicd/client:latest
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/react-client:latest
+            docker push camillocommits/askcicd/db:latest
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/node-svr:latest
+            docker push camillocommits/askcicd/server:latest
             
 workflows:
     build-and-test:
