@@ -3,10 +3,7 @@ orbs:
   node: circleci/node@2.1.0
 jobs:
   build-and-test:
-  build:
-    environment:
-      IMAGE_NAME: camillocommits/askcicd
-    
+  build:  
     executor:
       name: node/default
     steps:
@@ -42,11 +39,8 @@ jobs:
    
   docker-mk:
     machine: true
-    executor:
-      name: node/default
     steps:
-      - checkout
-      - setup_remote_docker          
+      - checkout          
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
