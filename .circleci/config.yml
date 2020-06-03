@@ -45,7 +45,7 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
             sudo docker build ./db -t camillocommits/node-react-db
-            sudo docker push camillocommits/node-rect-db
+            sudo docker push camillocommits/node-react-db:0.0.1
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
