@@ -4,6 +4,8 @@ orbs:
 jobs:
   build-and-test:
   build:
+    environment:
+      IMAGE_NAME: camillocommits/askcicd
     executor:
       name: node/default
     steps:
@@ -40,6 +42,8 @@ jobs:
           working_directory: ./client
    
   publish-latest:
+    environment:
+      IMAGE_NAME: askcicd
     executor:
       name: node/default
     steps:
@@ -48,7 +52,7 @@ jobs:
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd
+            docker push $IMAGE_NAME:latest
         
 workflows:
     build-and-test:
