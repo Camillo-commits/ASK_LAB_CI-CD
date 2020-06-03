@@ -45,7 +45,7 @@ jobs:
     steps:
       -chekout
       - setup_remote_docker          
-      -run:
+      - run:
         command: |
           echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
           docker push camillocommits/askcicd:tagname
