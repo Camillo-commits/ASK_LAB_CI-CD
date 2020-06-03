@@ -3,11 +3,17 @@ orbs:
   node: circleci/node@2.1.0
 jobs:
   build-and-test:
-  build:
+  build1:
     executor:
       name: node/default
+    docker:
+      - image: node-react-db 
     steps:
       - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker containers
+          command: docker-compose up
       
   acceptance_test_1:
     executor:
