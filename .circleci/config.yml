@@ -52,8 +52,16 @@ jobs:
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push $IMAGE_NAME:latest
-        
+            docker push camillocommits/askcicd/node-react-db:latest
+      - run:
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
+            docker push camillocommits/askcicd/react-client:latest
+      - run:
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
+            docker push camillocommits/askcicd/node-svr:latest
+            
 workflows:
     build-and-test:
       jobs:
