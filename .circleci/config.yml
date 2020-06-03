@@ -11,7 +11,7 @@ jobs:
           app-dir: ./server
       - run: cp ./server/package.json ./
       - run: cp -r ./server/tests ./
-      - run: cp -r ./client/src/containers/App ./
+      - run: cp -r ./client/src/containers/App ./app
       - run: npm install
       - run: npm test
 workflows:
