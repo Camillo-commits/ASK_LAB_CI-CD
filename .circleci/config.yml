@@ -5,7 +5,7 @@ jobs:
   build-and-test:
   build:
     environment:
-      IMAGE_NAME: camillocommits/askcicd1
+      IMAGE_NAME: camillocommits/askcicd
     
     executor:
       name: node/default
@@ -14,15 +14,15 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker container server
-          command: docker build . -t server
+          command: docker build . -t server:latest
           working_directory: ./server
       - run:
           name: Build docker container db
-          command: docker build . -t db
+          command: docker build . -t db:latest
           working_directory: ./db
       - run:
           name: Build docker container client
-          command: docker build . -t client
+          command: docker build . -t client:latest
           working_directory: ./client
       
   acceptance_test_1:
