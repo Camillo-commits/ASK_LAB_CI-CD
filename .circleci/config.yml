@@ -12,18 +12,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Build docker container server
-          command: docker build . -t camillocommits/askcicd/server
-          working_directory: ./server
-      - run:
-          name: Build docker container db
-          command: docker build . -t camillocommits/askcicd/db
-          working_directory: ./db
-      - run:
-          name: Build docker container client
-          command: docker build . -t camillocommits/askcicd/client
-          working_directory: ./client
+      
       
   acceptance_test_1:
     executor:
@@ -52,8 +41,7 @@ jobs:
           working_directory: ./client
    
   publish-latest:
-    environment:
-      IMAGE_NAME: askcicd
+    machine: true
     executor:
       name: node/default
     steps:
@@ -62,15 +50,18 @@ jobs:
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/client:latest
+            sudo docker build ./db -t camillocommits/node-react-db
+            docker push camillocommits/node-rect-db
       - run:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/db:latest
+            sudo docker build ./server -t camillocommits/node-svr
+            docker push camillocommits/node-svr
       - run:
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
-            docker push camillocommits/askcicd/server:latest
+           echo "$DOCKERHUB_PASS" | docker login -u "camillocommits" --password-stdin
+           sudo docker build ./client -t cra-client
+           docker push camillocommits/cra-client
             
 workflows:
     build-and-test:
