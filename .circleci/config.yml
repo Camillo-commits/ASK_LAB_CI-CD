@@ -10,8 +10,14 @@ jobs:
       - node/install-packages:
           app-dir: ./server
       - run:
+          command: npm install
+          working_directory: ./server
+      - run:
           command: npm test
           working_directory: ./server
+      - run:
+          command: npm install
+          working_directory: ./client
       - run:
           command: npm test
           working_directory: ./client
