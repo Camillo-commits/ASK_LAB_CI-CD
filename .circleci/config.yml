@@ -45,5 +45,8 @@ workflows:
         - acceptance_test_2:
             requires:
                 - build
-        
+      filters:
+        branches:
+          only:
+            - master
          
